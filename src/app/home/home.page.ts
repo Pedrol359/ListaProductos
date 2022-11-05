@@ -29,7 +29,6 @@ export class HomePage {
   }
   public verProducto(){
     console.log(this.carritoServices.getCarrito());
-    this.verCarrito();
   }
   public verCarrito(){
     this.router.navigate(['/carrito']);
