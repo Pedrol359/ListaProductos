@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carrito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item-sliding *ngFor="let producto of productosCarrito; let i = index" >
+            <ion-item>
+              <ion-label>
+                <!-- {{producto.foto}} -->
+              </ion-label>
+              <ion-label>
+                {{producto.nombre}}
+              </ion-label>
+              <ion-label>
+                ${{producto.precio}}
+              </ion-label>
+            </ion-item>
+            <!-- (ionSwipe)="removeStudent(i)" -->
+            <ion-item-options side="start" (ionSwipe)="eliminarCarrito()" (click)="verProducto()"> 
+              <ion-item-option expandable color="success">
+                Carrito
+                <!-- <ion-icon name="trash-outline"></ion-icon> -->
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+</ion-content>
