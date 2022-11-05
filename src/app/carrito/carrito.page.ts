@@ -10,6 +10,7 @@ import { CarritoService } from '../services/carrito.service';
 export class CarritoPage implements OnInit {
   public productosCarrito: Producto[];
   public total = 0;
+
   constructor(private carritoServices: CarritoService) {
     this.productosCarrito = this.carritoServices.getCarrito();
     this.calcularTotal();
@@ -19,18 +20,21 @@ export class CarritoPage implements OnInit {
   }
 
   public eliminarCarrito(index: number) {
-    this.carritoServices.dropProductoCarrito(index);
-    this.productosCarrito = this.carritoServices.getCarrito();
-    this.calcularTotal();
+    const productoEliminado=this.carritoServices.dropProductoCarrito(index);
+    this.calcularTotal(productoEliminado[0].precio);
   }
   public verProducto() {
-
+    
   }
-  public calcularTotal() {
+
+  public calcularTotal(precio = -1) {// Actualiza el total o calcula todo los precios
+    if (precio !==-1){
+      this.total -= precio;
+      return;
+    }
     for (let i = 0; i < this.productosCarrito.length; i++) {
       this.total += this.productosCarrito[i].precio;
     }
-
   }
 
   public formatear = (valor: number) => {

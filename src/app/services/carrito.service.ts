@@ -15,8 +15,9 @@ export class CarritoService {
     return this.carrito;
   }
   public dropProductoCarrito(index: number){
-    this.carrito.splice(index,1);
-    return this.carrito;
+    const itemDroped = this.carrito.splice(index,1);
+    this.guardarEnStorage();
+    return itemDroped;
   }
   public agregarCarrito(producto:Producto){
     this.carrito.push(producto);
