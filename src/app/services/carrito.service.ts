@@ -14,11 +14,14 @@ export class CarritoService {
   public getCarrito(){
     return this.carrito;
   }
+  public dropProductoCarrito(index: number){
+    this.carrito.splice(index,1);
+    return this.carrito;
+  }
   public agregarCarrito(producto:Producto){
     this.carrito.push(producto);
     this.guardarEnStorage();
   }
-
   private guardarEnStorage(){
     localStorage.setItem('carrito',JSON.stringify(this.carrito));
   }

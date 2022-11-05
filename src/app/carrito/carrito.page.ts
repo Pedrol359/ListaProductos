@@ -18,8 +18,9 @@ export class CarritoPage implements OnInit {
   ngOnInit() {
   }
 
-  public eliminarCarrito() {
-
+  public eliminarCarrito(index: number) {
+    this.carritoServices.dropProductoCarrito(index);
+    this.productosCarrito = this.carritoServices.getCarrito();
     this.calcularTotal();
   }
   public verProducto() {
