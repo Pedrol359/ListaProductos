@@ -8,9 +8,25 @@
   <ion-row>
       <ion-col>
         <ion-list>
+          <ion-item>
+            <ion-label>
+              <h2>Imagen</h2>
+            </ion-label>
+            <ion-label>
+              <h2>Descripción</h2>
+            </ion-label>
+            <ion-label>
+              <h2>Precio</h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-list>
           <ion-item-sliding *ngFor="let producto of productosCarrito; let i = index" >
             <ion-item>
               <ion-label>
+                <div class="image_cont">
+                  <img [src]="producto.foto" class="image"/>
+                </div>
                 <!-- {{producto.foto}} -->
               </ion-label>
               <ion-label>

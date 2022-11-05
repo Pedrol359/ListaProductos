@@ -7,13 +7,13 @@ export class Producto {
 
 export const Productos = [{
       nombre:"Sopa en lata",
-      precio:10,
-      foto:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lavanguardia.com%2Fcomer%2Ftendencias%2F20180222%2F44940929169%2Fsopa-campbells-andy-warhol-arte-pop.html&psig=AOvVaw0NQ0IePI-R3PyEU_1B6JgM&ust=1667662342107000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCJDx_8DslPsCFQAAAAAdAAAAABAM"
+      precio:25.12,
+      foto:"https://dbdzm869oupei.cloudfront.net/img/sticker/preview/2170.png"
   },
   {
       nombre:"Leche Lala",
       precio:12,
-      foto:"https://www.google.com/url?sa=i&url=https%3A%2F%2Ftiendasneto.com.mx%2Fleche-entera-lala-1-89-lt&psig=AOvVaw0v5rnAMhW5IyWUnfOKQvUa&ust=1667662431922000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCIiCk-zslPsCFQAAAAAdAAAAABAD"
+      foto:"https://superfenix.mx/wp-content/uploads/2022/06/7501020548495.jpg"
   },
   {
       nombre:"Arroz",
