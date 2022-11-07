@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Producto } from '../models/producto';
 import { CarritoService } from '../services/carrito.service';
 
@@ -11,7 +12,8 @@ export class CarritoPage implements OnInit {
   public productosCarrito: Producto[];
   public total = 0;
 
-  constructor(private carritoServices: CarritoService) {
+  constructor(private carritoServices: CarritoService,
+              private router: Router) {
     this.productosCarrito = this.carritoServices.getCarrito();
     this.calcularTotal();
   }
@@ -23,9 +25,6 @@ export class CarritoPage implements OnInit {
     const productoEliminado=this.carritoServices.dropProductoCarrito(index);
     this.calcularTotal(productoEliminado[0].precio);
   }
-  public verProducto() {
-    
-  }
 
   public calcularTotal(precio = -1) {// Actualiza el total o calcula todo los precios
     if (precio !==-1){
@@ -35,6 +34,12 @@ export class CarritoPage implements OnInit {
     for (let i = 0; i < this.productosCarrito.length; i++) {
       this.total += this.productosCarrito[i].precio;
     }
+  }
+
+  public verProducto(id_:number){
+    //this.router.navigate(['/view-products'],{queryParams:{id:id_}});
+    this.router.navigateByUrl(`/view-products/${id_}`);
+    //console.log(this.carritoServices.getCarrito());
   }
 
   public formatear = (valor: number) => {
