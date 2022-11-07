@@ -23,8 +23,8 @@
           </ion-item>
         </ion-list>
         <ion-list>
-          <ion-item-sliding *ngFor="let producto of productos; let i = index" (click)="verProducto(i)" >
-            <ion-item>
+          <ion-item-sliding *ngFor="let producto of productos; let i = index"  >
+            <ion-item (click)="verProducto(i)">
               <ion-label>
                 <div class="image_cont">
                   <img [src]="producto.foto || imgDefault" class="image"/>
@@ -35,7 +35,7 @@
                 {{producto.nombre}}
               </ion-label>
               <ion-label>
-                ${{producto.precio}}
+                {{producto.precio | currency}}
               </ion-label>
             </ion-item>
             <!-- (ionSwipe)="removeStudent(i)" -->
