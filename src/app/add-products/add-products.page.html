@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button>
+        
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="nombre" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input formControlName="precio" type="number" required></ion-input>
+    </ion-item>
+    <!-- Radio buttons -->
+    <!-- Checkboxes -->
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block">Agregar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

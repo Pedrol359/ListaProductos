@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../models/student';
 import { StudentService } from '../services/student.service';
+import { ProductosService } from '../services/productos.service';
+import { Producto } from '../models/producto';
 
 //Routes
 import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-view-student',
@@ -12,17 +15,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewStudentPage implements OnInit {
 
-  public student: Student;
+  public producto: Producto;
 
-  constructor(private studentService: StudentService, private aroute: ActivatedRoute) { } //First on execute
+  constructor(private productosService:ProductosService, private aroute: ActivatedRoute) { } //First on execute
 
   ngOnInit() { 
 
-    this.aroute.queryParams.subscribe(
-      (params) => {
-        this.student = this.studentService.getStudentByControlNumber(params.controlnumber);
-      }
-    ); //Build as a promise
+    // this.aroute.queryParams.subscribe(
+    //   (params) => {
+    //     this.producto = this.productosService.getProductById(parseInt(params));
+    //   }
+    // ); //Build as a promise
   }
 
 }

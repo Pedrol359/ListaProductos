@@ -19,6 +19,18 @@ const routes: Routes = [
     path: 'carrito',
     loadChildren: () => import('./carrito/carrito.module').then( m => m.CarritoPageModule)
   },
+  {
+    path: 'view-products',
+    loadChildren: () => import('./view-products/view-products.module').then( m => m.ViewProductsPageModule)
+  },
+  {
+    path: 'view-products/:id',
+    loadChildren: () => import('./view-products/view-products.module').then( m => m.ViewProductsPageModule)
+  },
+  {
+    path: 'add-products',
+    loadChildren: () => import('./add-products/add-products.module').then( m => m.AddProductsPageModule)
+  },
 ];
 
 @NgModule({

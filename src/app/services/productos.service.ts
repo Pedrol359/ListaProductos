@@ -13,8 +13,8 @@ export class ProductosService {
     // this.productos=null
   }
 
-  public addProduct(){
-    
+  public addProduct(producto:Producto){
+    this.productos.push(producto);
     //Guardar en la memoria interna del navegador
     this.guardarEnStorage();
   }

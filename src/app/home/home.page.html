@@ -23,7 +23,7 @@
           </ion-item>
         </ion-list>
         <ion-list>
-          <ion-item-sliding *ngFor="let producto of productos; let i = index" (click)="verProducto()" >
+          <ion-item-sliding *ngFor="let producto of productos; let i = index" (click)="verProducto(i)" >
             <ion-item>
               <ion-label>
                 <div class="image_cont">
@@ -56,7 +56,7 @@
         <!-- <ion-icon name="chevron-up-circle"></ion-icon> -->
       </ion-fab-button>
       <ion-fab-list side="top">
-        <ion-fab-button>
+        <ion-fab-button (click)="agregarProductos()">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
         <ion-fab-button (click)="verCarrito()">

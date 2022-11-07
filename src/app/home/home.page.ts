@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Student } from '../models/student';
-import { StudentService } from '../services/student.service';
 import { Producto } from '../models/producto';
 import { ProductosService } from '../services/productos.service';
 
@@ -27,12 +25,18 @@ export class HomePage {
   public agregarCarrito(idProducto:number){
     this.carritoServices.agregarCarrito(this.productos[idProducto]);
   }
-  public verProducto(){
-    console.log(this.carritoServices.getCarrito());
+  public verProducto(id_:string){
+    //this.router.navigate(['/view-products'],{queryParams:{id:id_}});
+    this.router.navigateByUrl(`/view-products/${id_}`);
+    //console.log(this.carritoServices.getCarrito());
   }
   public verCarrito(){
     this.router.navigate(['/carrito']);
   }
+  public agregarProductos(){
+    this.router.navigate(['/add-products']);
+  }
+  
   // public removeStudent(pos: number){
   // }
   // public getStudentByControlNumber(cn: string){
