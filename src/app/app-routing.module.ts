@@ -12,10 +12,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'view-student',
-    loadChildren: () => import('./view-student/view-student.module').then( m => m.ViewStudentPageModule)
-  },
-  {
     path: 'carrito',
     loadChildren: () => import('./carrito/carrito.module').then( m => m.CarritoPageModule)
   },

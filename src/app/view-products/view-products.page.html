@@ -12,7 +12,10 @@
 <ion-content>
   <div id="container">
     <ion-card>
-      <img  [src]="producto.foto" class="image"/>
+      <div class="image_cont">
+        <img [src]="producto.foto || imgDefault" class="image"/>
+      </div>
+      <!-- <img  [src]="producto.foto" class="image"/> -->
       <ion-card-header>
         <ion-card-title>
           <ion-label>

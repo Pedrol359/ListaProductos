@@ -15,17 +15,19 @@ import { CarritoService } from '../services/carrito.service';
 export class HomePage {
 
   public productos: Producto[];
+  public imgDefault: string;
 
   constructor(private productService: ProductosService, 
               private router: Router,
               private carritoServices: CarritoService) {
     this.productos = this.productService.getProducto();
+    this.imgDefault = this.productService.imgDefault;
   }
 
   public agregarCarrito(idProducto:number){
     this.carritoServices.agregarCarrito(this.productos[idProducto]);
   }
-  public verProducto(id_:string){
+  public verProducto(id_:number){
     //this.router.navigate(['/view-products'],{queryParams:{id:id_}});
     this.router.navigateByUrl(`/view-products/${id_}`);
     //console.log(this.carritoServices.getCarrito());
