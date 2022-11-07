@@ -13,8 +13,11 @@ import { ActivatedRoute } from '@angular/router';
 export class ViewProductsPage implements OnInit {
 
   public producto: Producto;
+  public imgDefault:string;
 
-  constructor(private productosService:ProductosService, private aroute: ActivatedRoute) { }
+  constructor(private productosService:ProductosService, private aroute: ActivatedRoute) {
+    this.imgDefault = this.productosService.imgDefault;
+   }
 
   ngOnInit() {
     const id = this.aroute.snapshot.paramMap.get('id');

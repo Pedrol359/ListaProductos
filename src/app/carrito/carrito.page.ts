@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Producto } from '../models/producto';
 import { CarritoService } from '../services/carrito.service';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-carrito',
@@ -11,11 +12,14 @@ import { CarritoService } from '../services/carrito.service';
 export class CarritoPage implements OnInit {
   public productosCarrito: Producto[];
   public total = 0;
+  public imgDefault: string;
 
   constructor(private carritoServices: CarritoService,
-              private router: Router) {
+              private router: Router,
+              private productService:ProductosService) {
     this.productosCarrito = this.carritoServices.getCarrito();
     this.calcularTotal();
+    this.imgDefault = this.productService.imgDefault;
   }
 
   ngOnInit() {
