@@ -40,7 +40,7 @@ export class CarritoPage implements OnInit {
     }
   }
 
-  public verProducto(id_:number){
+  public verProducto(id_:string){
     //this.router.navigate(['/view-products'],{queryParams:{id:id_}});
     this.router.navigateByUrl(`/view-products/${id_}`);
     //console.log(this.carritoServices.getCarrito());

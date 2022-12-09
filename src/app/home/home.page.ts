@@ -20,14 +20,15 @@ export class HomePage {
   constructor(private productService: ProductosService, 
               private router: Router,
               private carritoServices: CarritoService) {
-    this.productos = this.productService.getProducto();
+    // this.productos = this.productService.getProducto();
+    this.productService.getProductoFB().subscribe(res=>{this.productos=res});
     this.imgDefault = this.productService.imgDefault;
   }
 
-  public agregarCarrito(idProducto:number){
-    this.carritoServices.agregarCarrito(this.productos[idProducto]);
+  public agregarCarrito(producto:Producto){
+    this.carritoServices.agregarCarrito(producto);
   }
-  public verProducto(id_:number){
+  public verProducto(id_:string){
     //this.router.navigate(['/view-products'],{queryParams:{id:id_}});
     this.router.navigateByUrl(`/view-products/${id_}`);
     //console.log(this.carritoServices.getCarrito());

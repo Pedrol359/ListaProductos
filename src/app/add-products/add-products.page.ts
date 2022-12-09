@@ -44,7 +44,7 @@ export class AddProductsPage implements OnInit {
       //this.producto.nombre=this.ionicForm.value.nombre.toString();
       //this.producto.precio=Number(this.ionicForm.value.precio);
       console.log(this.producto);
-      this.productosService.addProduct(this.producto);
+      this.productosService.addProductFB(this.producto);
       this.presentToast('bottom');
     }
   }
