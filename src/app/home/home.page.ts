@@ -1,3 +1,4 @@
+import { AlertController, ToastController } from '@ionic/angular';
 import { Component } from '@angular/core';
 import { Producto } from '../models/producto';
 import { ProductosService } from '../services/productos.service';
@@ -17,34 +18,39 @@ export class HomePage {
   public productos: Producto[];
   public imgDefault: string;
 
-  constructor(private productService: ProductosService, 
-              private router: Router,
-              private carritoServices: CarritoService) {
-    this.productos = this.productService.getProducto();
+  constructor(private productService: ProductosService,
+    private router: Router,
+    private carritoServices: CarritoService,
+    private alertController: AlertController) {
+
+    this.productService.getProducto().subscribe(res => {
+      this.productos = res;
+    });
     this.imgDefault = this.productService.imgDefault;
   }
 
-  public agregarCarrito(idProducto:number){
+  public agregarCarrito(idProducto: number) {
     this.carritoServices.agregarCarrito(this.productos[idProducto]);
+    this.presentAlert('¡Producto Agregado al Carrito!');
+    console.log('agregado');
+    
   }
-  public verProducto(id_:number){
-    //this.router.navigate(['/view-products'],{queryParams:{id:id_}});
+  public verProducto(id_: number) {
     this.router.navigateByUrl(`/view-products/${id_}`);
-    //console.log(this.carritoServices.getCarrito());
   }
-  public verCarrito(){
+  public verCarrito() {
     this.router.navigate(['/carrito']);
   }
-  public agregarProductos(){
+  public agregarProductos() {
     this.router.navigate(['/add-products']);
   }
-  
-  // public removeStudent(pos: number){
-  // }
-  // public getStudentByControlNumber(cn: string){
-  //   this.router.navigate(['/view-student'], {
-  //     queryParams: {controlnumber: cn}
-  //   });
-  // }
 
+  async presentAlert(mens: string, sub?: string) {
+    const alert = await this.alertController.create({
+      header: mens,
+      subHeader: sub,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
 }

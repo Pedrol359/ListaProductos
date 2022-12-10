@@ -26,10 +26,10 @@
         </ion-list>
         <ion-list>
           <ion-item-sliding *ngFor="let producto of productosCarrito; let i = index" >
-            <ion-item>
+            <ion-item (click)="verProducto(i)">
               <ion-label>
                 <div class="image_cont">
-                  <img [src]="producto.foto || imgDefault" class="image"/>
+                  <img [src]="producto.foto || imgDefault" class="image" draggable="false"/>
                 </div>
                 <!-- {{producto.foto}} -->
               </ion-label>
@@ -41,7 +41,7 @@
               </ion-label>
             </ion-item>
             <!-- (ionSwipe)="removeStudent(i)" -->
-            <ion-item-options side="start" (ionSwipe)="eliminarCarrito(i)" (click)="verProducto(i)"> 
+            <ion-item-options side="start" (ionSwipe)="eliminarCarrito(i)" > 
               <ion-item-option expandable color="danger">
                 <ion-icon slot="start" name="trash"></ion-icon>
               </ion-item-option>

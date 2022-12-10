@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Producto } from '../models/producto';
 import { ProductosService } from '../services/productos.service';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-products',
@@ -18,11 +19,11 @@ export class AddProductsPage implements OnInit {
   constructor(
     private productosService:ProductosService, 
     public formBuilder: FormBuilder,
-    private toastController: ToastController
+    private alertController: AlertController,
+    private router:Router
   ) { }
 
   ngOnInit() {
-    //this.producto.nombre="";
     this.ionicForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.minLength(2)]],
       precio: ['', [Validators.required, Validators.pattern('([0-9])+(\.([0-9]{1,2}))?')]],
@@ -45,17 +46,22 @@ export class AddProductsPage implements OnInit {
       //this.producto.precio=Number(this.ionicForm.value.precio);
       console.log(this.producto);
       this.productosService.addProduct(this.producto);
-      this.presentToast('bottom');
+      this.presentAlert('Producto Agregado con exito');
     }
   }
-  async presentToast(position: 'top' | 'middle' | 'bottom') {
-    const toast = await this.toastController.create({
-      message: '¡Producto Agregado!',
-      duration: 1500,
-      position: position
+  async presentAlert(mens: string, sub?: string) {
+    const alert = await this.alertController.create({
+      header: mens,
+      subHeader: sub,
+      buttons: [{
+        text: 'Ok',
+        role: 'confirm',
+        handler: () => {
+          this.router.navigate(['/home']);
+        }
+      },],
     });
-
-    await toast.present();
+    await alert.present();
   }
 
 }

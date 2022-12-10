@@ -1,3 +1,4 @@
+import { AlertController, ToastController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Producto } from '../models/producto';
@@ -16,19 +17,52 @@ export class CarritoPage implements OnInit {
 
   constructor(private carritoServices: CarritoService,
               private router: Router,
-              private productService:ProductosService) {
-    this.productosCarrito = this.carritoServices.getCarrito();
-    this.calcularTotal();
+              private productService:ProductosService,
+              private alertController: AlertController) {
+                
     this.imgDefault = this.productService.imgDefault;
+    this.carritoServices.getCarrito().subscribe(res =>{
+      this.productosCarrito=res;
+      this.calcularTotal();
+    });
   }
 
   ngOnInit() {
   }
+  
+  public async eliminarCarrito(index: number) {
+    const alert = await this.alertController.create({
+      header: 'Confirmación',
+      subHeader: '¿Estás seguro que deseas eliminar el producto del carrito?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
 
-  public eliminarCarrito(index: number) {
-    const productoEliminado=this.carritoServices.dropProductoCarrito(index);
-    this.calcularTotal(productoEliminado[0].precio);
+          }
+        },
+        {
+          text: 'Aceptar',
+          role: 'confirm',
+          handler: () => {
+            const productoEliminado=this.carritoServices.dropProductoCarrito(index);
+            this.calcularTotal(productoEliminado[0].precio);
+            this.presentAlert('Producto Eliminado del carrito');
+            console.log('eliminado');
+            console.log(this.productosCarrito);
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
+  // public eliminarCarrito(index: number) {
+  //   console.log(this.productosCarrito);
+    
+
+    
+  // }
 
   public calcularTotal(precio = -1) {// Actualiza el total o calcula todo los precios
     if (precio !==-1){
@@ -49,4 +83,13 @@ export class CarritoPage implements OnInit {
   public formatear = (valor: number) => {
     return new Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(valor);
   }
+  async presentAlert(mens: string, sub?: string) {
+    const alert = await this.alertController.create({
+      header: mens,
+      subHeader: sub,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
 }
